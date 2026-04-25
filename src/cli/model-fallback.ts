@@ -106,7 +106,8 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
     avail.zai ||
     avail.kimiForCoding ||
     avail.opencodeGo ||
-    avail.vercelAiGateway
+    avail.vercelAiGateway ||
+    avail.minimax
   if (!hasAnyProvider) {
     return {
       $schema: SCHEMA_URL,
@@ -129,6 +130,8 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
       let agentConfig: AgentConfig | undefined
       if (avail.native.openai) {
         agentConfig = { model: "openai/gpt-5.4-mini-fast" }
+      } else if (avail.minimax) {
+        agentConfig = { model: "minimax/minimax-m2.7" }
       } else if (avail.opencodeGo) {
         agentConfig = { model: "opencode-go/minimax-m2.7" }
       } else if (avail.zai) {
@@ -150,6 +153,8 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
         agentConfig = { model: "anthropic/claude-haiku-4-5" }
       } else if (avail.opencodeZen) {
         agentConfig = { model: "opencode/claude-haiku-4-5" }
+      } else if (avail.minimax) {
+        agentConfig = { model: "minimax/minimax-m2.7-highspeed" }
       } else if (avail.opencodeGo) {
         agentConfig = { model: "opencode-go/minimax-m2.7" }
       } else if (avail.copilot) {

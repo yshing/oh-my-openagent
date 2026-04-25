@@ -13,6 +13,7 @@ function detectProvidersFromOmoConfig(): {
   hasKimiForCoding: boolean
   hasOpencodeGo: boolean
   hasVercelAiGateway: boolean
+  hasMinimax: boolean
 } {
   const omoConfigPath = getOmoConfigPath()
   if (!existsSync(omoConfigPath)) {
@@ -23,6 +24,7 @@ function detectProvidersFromOmoConfig(): {
       hasKimiForCoding: false,
       hasOpencodeGo: false,
       hasVercelAiGateway: false,
+      hasMinimax: false,
     }
   }
 
@@ -37,6 +39,7 @@ function detectProvidersFromOmoConfig(): {
         hasKimiForCoding: false,
         hasOpencodeGo: false,
         hasVercelAiGateway: false,
+        hasMinimax: false,
       }
     }
 
@@ -47,8 +50,9 @@ function detectProvidersFromOmoConfig(): {
     const hasKimiForCoding = configStr.includes('"kimi-for-coding/')
     const hasOpencodeGo = configStr.includes('"opencode-go/')
     const hasVercelAiGateway = configStr.includes('"vercel/')
+    const hasMinimax = configStr.includes('"minimax/')
 
-    return { hasOpenAI, hasOpencodeZen, hasZaiCodingPlan, hasKimiForCoding, hasOpencodeGo, hasVercelAiGateway }
+    return { hasOpenAI, hasOpencodeZen, hasZaiCodingPlan, hasKimiForCoding, hasOpencodeGo, hasVercelAiGateway, hasMinimax }
   } catch {
     return {
       hasOpenAI: true,
@@ -57,6 +61,7 @@ function detectProvidersFromOmoConfig(): {
       hasKimiForCoding: false,
       hasOpencodeGo: false,
       hasVercelAiGateway: false,
+      hasMinimax: false,
     }
   }
 }
@@ -84,6 +89,7 @@ export function detectCurrentConfig(): DetectedConfig {
     hasKimiForCoding: false,
     hasOpencodeGo: false,
     hasVercelAiGateway: false,
+    hasMinimax: false,
   }
 
   const { format, path } = detectConfigFormat()
@@ -112,13 +118,14 @@ export function detectCurrentConfig(): DetectedConfig {
   const providers = openCodeConfig.provider as Record<string, unknown> | undefined
   result.hasGemini = providers ? "google" in providers : false
 
-  const { hasOpenAI, hasOpencodeZen, hasZaiCodingPlan, hasKimiForCoding, hasOpencodeGo, hasVercelAiGateway } = detectProvidersFromOmoConfig()
+  const { hasOpenAI, hasOpencodeZen, hasZaiCodingPlan, hasKimiForCoding, hasOpencodeGo, hasVercelAiGateway, hasMinimax } = detectProvidersFromOmoConfig()
   result.hasOpenAI = hasOpenAI
   result.hasOpencodeZen = hasOpencodeZen
   result.hasZaiCodingPlan = hasZaiCodingPlan
   result.hasKimiForCoding = hasKimiForCoding
   result.hasOpencodeGo = hasOpencodeGo
   result.hasVercelAiGateway = hasVercelAiGateway
+  result.hasMinimax = hasMinimax
 
   return result
 }

@@ -77,7 +77,7 @@ export async function runTuiInstaller(args: InstallArgs, version: string): Promi
     )
   }
 
-  if (!config.hasClaude && !config.hasOpenAI && !config.hasGemini && !config.hasCopilot && !config.hasOpencodeZen && !config.hasVercelAiGateway) {
+  if (!config.hasClaude && !config.hasOpenAI && !config.hasGemini && !config.hasCopilot && !config.hasOpencodeZen && !config.hasVercelAiGateway && !config.hasMinimax) {
     p.log.warn("No model providers configured. Using opencode/big-pickle as fallback.")
   }
 

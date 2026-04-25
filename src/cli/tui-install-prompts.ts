@@ -120,6 +120,16 @@ export async function promptInstallConfig(detected: DetectedConfig): Promise<Ins
   })
   if (!vercelAiGateway) return null
 
+  const minimax = await selectOrCancel({
+    message: "Do you have a MiniMax Coding Plan (minimax.io)?",
+    options: [
+      { value: "no", label: "No", hint: "Will use other configured providers" },
+      { value: "yes", label: "Yes", hint: "minimax-m2.7 for quick tasks and fallback" },
+    ],
+    initialValue: initial.minimax,
+  })
+  if (!minimax) return null
+
   return {
     hasClaude: claude !== "no",
     isMax20: claude === "max20",
@@ -131,5 +141,6 @@ export async function promptInstallConfig(detected: DetectedConfig): Promise<Ins
     hasKimiForCoding: kimiForCoding === "yes",
     hasOpencodeGo: opencodeGo === "yes",
     hasVercelAiGateway: vercelAiGateway === "yes",
+    hasMinimax: minimax === "yes",
   }
 }

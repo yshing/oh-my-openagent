@@ -11,9 +11,10 @@ export function toProviderAvailability(config: InstallConfig): ProviderAvailabil
 		opencodeZen: config.hasOpencodeZen,
 		copilot: config.hasCopilot,
 		zai: config.hasZaiCodingPlan,
-kimiForCoding: config.hasKimiForCoding,
+		kimiForCoding: config.hasKimiForCoding,
 		opencodeGo: config.hasOpencodeGo,
 		vercelAiGateway: config.hasVercelAiGateway,
+		minimax: config.hasMinimax,
 		isMaxPlan: config.isMax20,
 	}
 }
@@ -26,9 +27,10 @@ export function isProviderAvailable(provider: string, availability: ProviderAvai
 		"github-copilot": availability.copilot,
 		opencode: availability.opencodeZen,
 		"zai-coding-plan": availability.zai,
-"kimi-for-coding": availability.kimiForCoding,
+		"kimi-for-coding": availability.kimiForCoding,
 		"opencode-go": availability.opencodeGo,
 		vercel: availability.vercelAiGateway,
+		minimax: availability.minimax,
 	}
 	return mapping[provider] ?? false
 }

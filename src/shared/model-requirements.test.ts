@@ -79,11 +79,11 @@ describe("AGENT_MODEL_REQUIREMENTS", () => {
     expect(primary.model).toBe("gpt-5.4-mini-fast")
 
     const second = librarian.fallbackChain[1]
-    expect(second.providers[0]).toBe("opencode-go")
+    expect(second.providers[0]).toBe("minimax")
     expect(second.model).toBe("minimax-m2.7-highspeed")
 
     const tertiary = librarian.fallbackChain[2]
-    expect(tertiary.providers[0]).toBe("opencode-go")
+    expect(tertiary.providers[0]).toBe("minimax")
     expect(tertiary.model).toBe("minimax-m2.7")
 
     const quaternary = librarian.fallbackChain[3]
@@ -234,7 +234,7 @@ describe("AGENT_MODEL_REQUIREMENTS", () => {
 
     const quaternary = atlas.fallbackChain[3]
     expect(quaternary.model).toBe("minimax-m2.7")
-    expect(quaternary.providers[0]).toBe("opencode-go")
+    expect(quaternary.providers[0]).toBe("minimax")
   })
 
   test("sisyphus-junior has an OpenAI fallback and minimax before big-pickle", () => {
@@ -467,7 +467,7 @@ describe("CATEGORY_MODEL_REQUIREMENTS", () => {
 
     const fourth = writing.fallbackChain[3]
     expect(fourth.model).toBe("minimax-m2.7")
-    expect(fourth.providers[0]).toBe("opencode-go")
+    expect(fourth.providers[0]).toBe("minimax")
   })
 
   test("all 8 categories have valid fallbackChain arrays", () => {
